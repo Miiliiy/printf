@@ -2,54 +2,55 @@
 
 /**
  * _printf - function that produces output according to a format
- *  @format:  is a character string (c)
- * Return: 1
+ *  @format:  is a character string (c, s, % )
+ * Return: 0
  */
-
-int _printf_char(va_list format)
+int _printf(const char *format, ...)
 {
-	char str;
+    va_list args;
+    va_start(args, format);
 
-	str = va_arg(format, int);
-	_putchar(str);
-	return (1);
-}
+    int count = 0;
+    const char *ptr = format;
 
-/**
- * _printf - function that produces output according to a format
- *  @format:  is a character string (s)
- * Return: length
- */
-int _printf_string(va_list format)
-{
-	char str;
-	int i;
-	int length;
+    while (*ptr != '\0')
+    {
+        if (*ptr == '%')
+        {
+            ptr++;
 
-	str =  va_arg(format, char*);
-	if (str == Null)
-{
-	str = "(Null);
-	length = _strlen(str);
-	for ( i = 0; i < length; i++)
-	_putchar(str[i]);
-	return (length);
-}
-else
-{
-	length = _strlen(str);
-	for ( i = 0; i < length; i++)
-	_putchar(str[i]);
-	return (length);
-}
+            if (*ptr == 'c')
+            {
+                int c = va_arg(args, int);
+                putchar(c);
+                count++;
+            }
+            else if (*ptr == 's')
+            {
+                char *s = va_arg(args, char *);
+                while (*s != '\0')
+                {
+                    putchar(*s);
+                    s++;
+                    count++;
+                }
+            }
+            else if (*ptr == '%')
+            {
+                putchar('%');
+                count++;
+            }
+        }
+        else
+        {
+            putchar(*ptr);
+            count++;
+        }
 
-/**
-* _printf - function that produces output according to a format
-*  @format:  is a character string ( % )
-* Return: integer
-*/
-{
-int _printf_37(void)
-	_putchar(37);
-	return (1);
+        ptr++;
+    }
+
+    va_end(args);
+
+    return count;
 }

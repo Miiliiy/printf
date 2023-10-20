@@ -7,11 +7,6 @@
 #include <limits.h>
 
 int _putchar(char character);
-int printf_char(va_list args, int printed);
-int printf_string(va_list args, int printed);
-int _printf_char(va_list format)
-int _printf_char(va_list format)
-int _printf_string(va_list format)
-int _printf_37(void)
+int _printf(const char *format, ...);
 
 #endif
