@@ -2,33 +2,54 @@
 
 /**
  * _printf - function that produces output according to a format
- * @format:  is a character string (c, s, %)
- * Return: the string formated
-  */
+ *  @format:  is a character string (c)
+ * Return: 1
+ */
 
-int _printf(const char *format, ...)
+int _printf_char(va_list format)
 {
-	int printed = 0;
+	char str;
 
-	va_list args;
+	str = va_arg(format, int);
+	_putchar(str);
+	return (1);
+}
 
-	va_start(args, format);
+/**
+ * _printf - function that produces output according to a format
+ *  @format:  is a character string (s)
+ * Return: length
+ */
+int _printf_string(va_list format)
+{
+	char str;
+	int i;
+	int length;
 
-	while (*format != '\0')
-	{
-		if (*format == '%')
-		{
-			format++;
-			printed = selector(format, args, printed);
-			format++;
-		}
-		else
-		{
-			_putchar(*format);
-			printed++;
-			format++;
-		}
-	}
-	va_end(args);
-	return (printed);
+	str =  va_arg(format, char*);
+	if (str == Null)
+{
+	str = "(Null);
+	length = _strlen(str);
+	for ( i = 0; i < length; i++)
+	_putchar(str[i]);
+	return (length);
+}
+else
+{
+	length = _strlen(str);
+	for ( i = 0; i < length; i++)
+	_putchar(str[i]);
+	return (length);
+}
+
+/**
+* _printf - function that produces output according to a format
+*  @format:  is a character string ( % )
+* Return: integer
+*/
+{
+int _printf_37(void)
+	_putchar(37);
+	return (1);
 }
